@@ -1,5 +1,6 @@
 import {
     Button,
+    Container,
     FormControl,
     Grid,
     InputLabel,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Card } from "../../components/Card";
+import Player  from "./Player";
 import { getSpotifyToken, spotifySearch } from "../../api/Spotify";
 import Cookies from "universal-cookie";
 
@@ -24,6 +26,7 @@ function Home() {
     });
     const TYPES = ["all", "album", "artist", "track"];
     const token = cookies.get("token");
+    const [playingTrack, setPlayingTrack] = useState()
     getSpotifyToken();
 
     //Llamado a busqueda a nuestra clase API
@@ -105,11 +108,7 @@ function Home() {
                         <p>Nombre del Artista:</p>
                         <p>{artist.name}</p>
                         <p>Followers: {artist.followers.total}</p>   
-                           {/* <Card
-                                name={album.name}
-                                artist={album.artists[0].name}
-                                image={album.images[0]?.url}
-                            />*/}
+                           {}
                         </Grid>
                     ))}
                 {data?.albums &&
@@ -123,16 +122,18 @@ function Home() {
                         } alt="Albums"/>
                         <p>Nombre del Artista:</p>
                         <p>{album.artists[0].name}</p>   
-                           {/* <Card
-                                name={album.name}
-                                artist={album.artists[0].name}
-                                image={album.images[0]?.url}
-                            />*/}
+                           {}
                         </Grid>
                     ))}
             </Grid>
             <Grid item xs={6}></Grid>
+            
+            <Player accessToken={token} trackUri={playingTrack?.uri} />
+           
         </Grid>
+
+            
+        
     );
 }
 export default Home;
