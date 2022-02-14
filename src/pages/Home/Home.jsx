@@ -1,6 +1,5 @@
 import {
     Button,
-    Container,
     FormControl,
     Grid,
     InputLabel,
@@ -10,7 +9,6 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Card } from "../../components/Card";
-import Player  from "./Player";
 import { getSpotifyToken, spotifySearch } from "../../api/Spotify";
 import Cookies from "universal-cookie";
 
@@ -26,7 +24,7 @@ function Home() {
     });
     const TYPES = ["all", "album", "artist", "track"];
     const token = cookies.get("token");
-    const [playingTrack, setPlayingTrack] = useState()
+    
     getSpotifyToken();
 
     //Llamado a busqueda a nuestra clase API
@@ -128,8 +126,10 @@ function Home() {
             </Grid>
             <Grid item xs={6}></Grid>
             
-            <Player accessToken={token} trackUri={playingTrack?.uri} />
-           
+            
+           <div>
+           <h3> <a href="https://github.com/AEAL117/proyect-spoti/tree/master">GitHub</a></h3>
+           </div>
         </Grid>
 
             
